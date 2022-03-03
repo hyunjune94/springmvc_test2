@@ -19,4 +19,10 @@ public class CodeDao {
 
 	public List<Code> selectList() {return sqlSession.selectList(namespace + ".selectList", "");}
 
+	public Code selectOne(CodeVo vo) { return sqlSession.selectOne(namespace + ".selectOne", vo);}
+
+	public int insert(Code dto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

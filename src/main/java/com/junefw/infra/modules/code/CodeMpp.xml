@@ -30,4 +30,16 @@
 				,0
 			)
 	</insert>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			a.ifcgSeq
+		    , a.ifcgName
+		    , a.ifcgDelNy
+		from
+			infrCodeGroup a
+		where 1=1
+			and ifcgDelNy = 0
+			and ifcgSeq = #{ifcgSeq}
+	</select>
 </mapper>

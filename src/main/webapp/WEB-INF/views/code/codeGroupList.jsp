@@ -15,7 +15,7 @@
 		<c:forEach items="${list}" var="item" varStatus="status">	
 		
 		<c:out value="${item.ifcgSeq}"/> | <c:out value="${item.ifcgName}"/> | <c:out value="${item.ifcgDelNy}"/> <br>
-		
+	
 		</c:forEach>
 	</c:otherwise>
 </c:choose>	 
