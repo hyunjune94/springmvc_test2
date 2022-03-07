@@ -42,4 +42,23 @@
 			and ifcgDelNy = 0
 			and ifcgSeq = #{ifcgSeq}
 	</select>
+	
+	<update id="update">
+		update infrCodeGroup set
+			a.ifcgName = #{ifcgName}
+		where 1=1
+			and ifcgSeq = #{ifcgSeq}
+	</update>
+	
+	
+	<select id="selectList2" resultMap="resultMapObj">
+		SELECT
+			a.ifcdSeq
+		    , a.ifcdName
+		    , a.ifcdDelNy
+		FROM
+			prj.infrCode a
+		WHERE 1=1
+			and ifcdDelNy = 0
+	</select>
 </mapper>

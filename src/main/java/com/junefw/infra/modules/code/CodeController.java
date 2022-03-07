@@ -49,5 +49,41 @@ public class CodeController {
 		
 		return "code/codeGroupView";
 	}
+	
+	@RequestMapping(value = "/code/codeGroupForm2")	//주소입력
+	public String codeGroupForm2(CodeVo vo, Model model) throws Exception {
+		
+		Code rt = service.selectOne(vo);
+		
+		model.addAttribute("rt",rt);
+		
+		return "code/codeGroupForm2";	//보여지는 jsp파일
+	}
+	
+	@RequestMapping(value = "/code/codeGroupUpdt")	//주소입력
+	public String codeGroupUpdt(Code dto) throws Exception {
+		
+		service.update(dto);
+		return "";
+	}
+	
+	//--------------
+	//code
+	
+	@RequestMapping(value = "/code/codeList")
+	public String codeList(Model model) throws Exception {
 
+		List<Code> list = service.selectList2();
+		model.addAttribute("list", list);
+
+		return "code/codeList";
+	}
+	
+	@RequestMapping(value = "/code/codeUpdt")	//주소입력
+	public String codeUpdt(Code dto) throws Exception {
+		
+		service.update(dto);
+		return "";
+	}
+	
 }
