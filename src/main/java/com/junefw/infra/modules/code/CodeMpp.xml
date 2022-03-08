@@ -8,6 +8,8 @@
 
     <resultMap id="resultMapObj" type="com.junefw.infra.modules.code.Code"></resultMap>
 
+
+	<!-- infrCodeGroup -->
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.ifcgSeq
@@ -20,13 +22,13 @@
 	</select>
 	
 	<insert id="insert">
-			insert into infrMember (
-				ifmmId
-				, ifmmName
-				,ifmmDelNy
+			insert into infrCodeGroup (
+				ifcgSeq
+				,ifcgName
+				,ifcgDelNy
 			) values (
-				#{ifmmId}
-				,#{ifmmName}
+				#{ifcgSeq}
+				,#{ifcgName}
 				,0
 			)
 	</insert>
@@ -45,13 +47,14 @@
 	
 	<update id="update">
 		update infrCodeGroup set
-			a.ifcgName = #{ifcgName}
+			ifcgName = #{ifcgName}
 		where 1=1
 			and ifcgSeq = #{ifcgSeq}
 	</update>
 	
 	
-	<select id="selectList2" resultMap="resultMapObj">
+	<!-- infrCode -->	
+	<select id="selectListCode" resultMap="resultMapObj">
 		SELECT
 			a.ifcdSeq
 		    , a.ifcdName
@@ -61,4 +64,35 @@
 		WHERE 1=1
 			and ifcdDelNy = 0
 	</select>
+	
+	<insert id="insertCode">
+			insert into infrCode (
+				ifcdName
+				, ifcdDelNy
+				, infrCodeGroup_ifcgSeq
+			) values (
+				#{ifcdName}
+				, 0
+				, #{infrCodeGroup_ifcgSeq}
+			)
+	</insert>
+	
+	<select id="selectOneCode" resultMap="resultMapObj">
+		select
+			a.ifcdSeq
+		    , a.ifcdName
+		    , a.ifcdDelNy
+		from
+			infrCode a
+		where 1=1
+			and ifcdDelNy = 0
+			and ifcdSeq = #{ifcdSeq}
+	</select>
+	
+	<update id="updateCode">
+		update infrCode set
+			ifcdName = #{ifcdName}
+		where 1=1
+			and ifcdSeq = #{ifcdSeq}
+	</update>
 </mapper>

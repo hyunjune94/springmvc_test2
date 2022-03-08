@@ -10,6 +10,8 @@ public class Code {
 	private String ifcdSeq;
 	private String ifcdName;
 	private Integer ifcdDelNy;
+	private String infrCodeGroup_ifcgSeq;
+
 	//------------
 	public String getIfcgSeq() {
 		return ifcgSeq;
@@ -47,6 +49,12 @@ public class Code {
 	}
 	public void setIfcdDelNy(Integer ifcdDelNy) {
 		this.ifcdDelNy = ifcdDelNy;
+	}
+	public String getInfrCodeGroup_ifcgSeq() {
+		return infrCodeGroup_ifcgSeq;
+	}
+	public void setInfrCodeGroup_ifcgSeq(String infrCodeGroup_ifcgSeq) {
+		this.infrCodeGroup_ifcgSeq = infrCodeGroup_ifcgSeq;
 	}
 	
 	

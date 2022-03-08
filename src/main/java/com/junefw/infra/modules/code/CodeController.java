@@ -69,21 +69,57 @@ public class CodeController {
 	
 	//--------------
 	//code
-	
 	@RequestMapping(value = "/code/codeList")
 	public String codeList(Model model) throws Exception {
 
-		List<Code> list = service.selectList2();
+		List<Code> list = service.selectListCode();
 		model.addAttribute("list", list);
 
 		return "code/codeList";
 	}
 	
-	@RequestMapping(value = "/code/codeUpdt")	//주소입력
-	public String codeUpdt(Code dto) throws Exception {
+	@RequestMapping(value = "/code/codeForm")
+	public String codeForm(Model model) throws Exception {
 		
-		service.update(dto);
+		List<Code> list = service.selectList();
+		model.addAttribute("list",list);
+		return "code/codeForm";
+	}
+	
+	@RequestMapping(value = "/code/codeInst")
+	public String codeInst(Code dto) throws Exception {
+
+		service.insertCode(dto);
+
 		return "";
 	}
+	
+	@RequestMapping(value = "/code/codeView")
+	public String codeView(CodeVo vo, Model model) throws Exception {
+
+		Code rt = service.selectOneCode(vo);
+		
+		model.addAttribute("item", rt);
+		
+		return "code/codeView";
+	}
+	
+	@RequestMapping(value = "/code/codeForm2")	//주소입력
+	public String codeForm2(CodeVo vo, Model model) throws Exception {
+		
+		Code rt = service.selectOneCode(vo);
+		
+		model.addAttribute("item",rt);
+		
+		return "code/codeForm2";	//보여지는 jsp파일
+	}
+	
+	@RequestMapping(value = "/code/codeUpdt")	//주소입력
+	public String codeUpdt(Code dto) throws Exception {
+		System.out.println("asdasdf");
+		service.updateCode(dto);
+		return "";
+	}	
+	
 	
 }
