@@ -5,8 +5,5 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
-<form method="post" action="/infra/code/codeGroupUpdt">
-	<input type="hidden" name="ifcgSeq" value="<c:out value="${rt.ifcgSeq}"/>">
-	<input type="text" name="ifcgName" placeholder="아이디" value="<c:out value="${rt.ifcgName}"/>">
-	<input type="submit" value="제출">
-</form>
+<c:out value="${item.ifmmSeq}"/> | <c:out value="${item.ifmmId}"/> | <c:out value="${item.ifmmName}"/> <br>
+<a href="/infra/member/memberForm2?ifmmSeq=<c:out value="${item.ifmmSeq}"/>">수정</a>

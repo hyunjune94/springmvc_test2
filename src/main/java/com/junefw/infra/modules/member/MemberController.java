@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+
 @Controller
 public class MemberController {
 
@@ -31,15 +33,38 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member/memberInst")
 	public String memberInst(Model model, Member dto) throws Exception {
-		
-		System.out.println("dto.getIfmmId(): " + dto.getIfmmId());
-		System.out.println("dto.getIfmmName(): " + dto.getIfmmName());
 
-		// 입력을 작동시킨다.
-		int result = service.insert(dto);
+		service.insert(dto);
 		
-		System.out.println("result: " + result);
+		return "";
+	}
+	
+	@RequestMapping(value = "/member/memberView")
+	public String memberView(MemberVo vo, Model model) throws Exception {
 
+		System.out.println("vo.getIfmmSeq(): " + vo.getIfmmSeq());
+
+		Member rt = service.selectOne(vo);
+		
+		model.addAttribute("item", rt);
+		
+		return "member/memberView";
+	}
+	
+	@RequestMapping(value = "/member/memberForm2")	//주소입력
+	public String memberForm2(MemberVo vo, Model model) throws Exception {
+		
+		Member rt = service.selectOne(vo);
+		
+		model.addAttribute("item",rt);
+		
+		return "member/memberForm2";	//보여지는 jsp파일
+	}
+	
+	@RequestMapping(value = "/member/memberUpdt")	//주소입력
+	public String memberUpdt(Member dto) throws Exception {
+		
+		service.update(dto);
 		return "";
 	}
 }

@@ -28,4 +28,24 @@
 				,0
 			)
 	</insert>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			a.ifmmSeq
+		    , a.ifmmId
+		    , a.ifmmName
+		    , a.ifmmDelNy
+		from
+			infrMember a
+		where 1=1
+			and ifmmDelNy = 0
+			and ifmmSeq = #{ifmmSeq}
+	</select>
+	
+	<update id="update">
+		update infrMember set
+			ifmmName = #{ifmmName}
+		where 1=1
+			and ifmmSeq = #{ifmmSeq}
+	</update>
 </mapper>
