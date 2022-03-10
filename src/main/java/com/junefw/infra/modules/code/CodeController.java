@@ -35,7 +35,7 @@ public class CodeController {
 	//	입력 실행
 		service.insert(dto);
 
-		return "";
+		return "redirect:/code/codeGroupList";
 	}
 	
 	@RequestMapping(value = "/code/codeGroupView")
@@ -64,7 +64,7 @@ public class CodeController {
 	public String codeGroupUpdt(Code dto) throws Exception {
 		
 		service.update(dto);
-		return "";
+		return "redirect:/code/codeGroupView?ifcg=" + dto.getIfcgSeq();
 	}
 	
 	//--------------------------------------------------
@@ -91,7 +91,7 @@ public class CodeController {
 
 		service.insertCode(dto);
 
-		return "";
+		return "redirect:/code/codeList";
 	}
 	
 	@RequestMapping(value = "/code/codeView")
@@ -118,7 +118,7 @@ public class CodeController {
 	public String codeUpdt(Code dto) throws Exception {
 		System.out.println("asdasdf");
 		service.updateCode(dto);
-		return "";
+		return "redirect:/code/codeView?ifcd=" + dto.getIfcdSeq();
 	}	
 	
 	

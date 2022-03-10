@@ -36,7 +36,7 @@ public class MemberController {
 
 		service.insert(dto);
 		
-		return "";
+		return "redirect:/member/memberList";
 	}
 	
 	@RequestMapping(value = "/member/memberView")
@@ -65,6 +65,6 @@ public class MemberController {
 	public String memberUpdt(Member dto) throws Exception {
 		
 		service.update(dto);
-		return "";
+		return "redirect:/member/memberView?ifmmSeq=" + dto.getIfmmSeq();
 	}
 }
