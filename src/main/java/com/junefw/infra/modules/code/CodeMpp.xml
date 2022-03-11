@@ -16,9 +16,14 @@
 		    , a.ifcgName
 		    , a.ifcgDelNy
 		FROM
-			prj.infrCodeGroup a
+			infrCodeGroup a
 		WHERE 1=1
-			and ifcgDelNy = 0
+			<choose>
+				<when test="shIfcgDelNy == 1">And IfcgDelNy = 1</when>
+				<when test="shIfcgDelNy == 0">And IfcgDelNy = 0</when>
+			</choose>
+			
+			<if test="shIfcgName != null and !shIfcgName.equals('')"> AND ifcgName LIKE concat('%',#{shIfcgName},'%')</if>
 	</select>
 	
 	<insert id="insert">
@@ -52,7 +57,6 @@
 			and ifcgSeq = #{ifcgSeq}
 	</update>
 	
-	
 	<!-- infrCode -->	
 	<select id="selectListCode" resultMap="resultMapObj">
 		SELECT
@@ -62,7 +66,8 @@
 		FROM
 			prj.infrCode a
 		WHERE 1=1
-			and ifcdDelNy = 0
+			AND ifcdDelNy = 0
+			<if test="shIfcgSeq != null and !shIfcgSeq.equals('')"> AND prj.ifcgSeq = #{shIfcgSeq}</if>
 	</select>
 	
 	<insert id="insertCode">

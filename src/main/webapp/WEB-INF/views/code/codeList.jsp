@@ -5,6 +5,16 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<form id="" name="" method="get" action="/infra/code/codeList">
+<select name="shIfcgSeq">
+	<option value="">::코드그룹::
+		<c:forEach items="${listCodeGroup}" var="item" varStatus="status">
+	<option value="<c:out value="${item.ifcgSeq}"/>"><c:out value="${item.ifcgName}"/>
+		</c:forEach>
+</select>
+<input type="submit" name="search">
+<br>
+
 <c:choose>
 	<c:when test="${fn:length(list) eq 0}">
 		<tr>
@@ -19,3 +29,4 @@
 		</c:forEach>
 	</c:otherwise>
 </c:choose>	 
+</form>
