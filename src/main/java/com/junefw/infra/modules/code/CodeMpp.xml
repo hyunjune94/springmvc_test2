@@ -14,6 +14,7 @@
 		SELECT
 			a.ifcgSeq
 		    , a.ifcgName
+		    , a.ifcgNameEng
 		    , a.ifcgDelNy
 		FROM
 			infrCodeGroup a
@@ -21,9 +22,12 @@
 			<choose>
 				<when test="shIfcgDelNy == 1">And IfcgDelNy = 1</when>
 				<when test="shIfcgDelNy == 0">And IfcgDelNy = 0</when>
-			</choose>
-			
+			</choose>			
 			<if test="shIfcgName != null and !shIfcgName.equals('')"> AND ifcgName LIKE concat('%',#{shIfcgName},'%')</if>
+			<choose>
+				<when test="shOption == 1">AND a.ifcgName LIKE concat('%',#{shValue},'%')</when>
+				<when test="shOption == 2">AND a.ifcgNameEng LIKE concat('%',#{shValue},'%')</when>
+			</choose>
 	</select>
 	
 	<insert id="insert">
