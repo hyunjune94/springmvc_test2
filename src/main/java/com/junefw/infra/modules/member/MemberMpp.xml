@@ -8,13 +8,26 @@
 
     <resultMap id="resultMapObj" type="com.junefw.infra.modules.member.Member"></resultMap>
 
+	<sql id="selectCommon">
+		FROM
+			infrMember a
+		WHERE 1=1
+			AND ifmmDelNy = 0
+	</sql>
+
+	<select id="selectOneCount" resultType="Integer">
+		SELECT
+			count(*)
+		<include refid="selectCommon" />
+	</select>
+	
 	<select id="selectList" resultMap="resultMapObj">
-			select
-				ifmmSeq
-				, ifmmId
-				, ifmmName
-			from
-				infrMember
+		SELECT
+			ifmmSeq
+			, ifmmId
+			, ifmmName
+		<include refid="selectCommon" />
+		limit '#{startRnumForMysql}', '#{rowNumToShow}'
 	</select>
 	
 	<insert id="insert">
@@ -30,16 +43,16 @@
 	</insert>
 	
 	<select id="selectOne" resultMap="resultMapObj">
-		select
+		SELECT
 			a.ifmmSeq
 		    , a.ifmmId
 		    , a.ifmmName
 		    , a.ifmmDelNy
-		from
+		FROM
 			infrMember a
-		where 1=1
-			and ifmmDelNy = 0
-			and ifmmSeq = #{ifmmSeq}
+		WHERE 1=1
+			AND ifmmDelNy = 0
+			AND ifmmSeq = #{ifmmSeq}
 	</select>
 	
 	<update id="update">

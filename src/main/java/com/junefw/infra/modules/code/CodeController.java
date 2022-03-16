@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CodeController {
 	
-
-
 	@Autowired
 	CodeServiceImpl service;
 	
@@ -81,13 +79,21 @@ public class CodeController {
 	//--------------------------------------------------
 	//code
 	@RequestMapping(value = "/code/codeList")
-	public String codeList(CodeVo vo, Model model) throws Exception {
+	public String codeList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 
-		List<Code> list = service.selectListCode(vo);
-		model.addAttribute("list", list);
+		int count = service.selectOneCountCode(vo);
 		
-		List<Code> listCodeGroup = service.selectList(vo);
-		model.addAttribute("listCodeGroup", listCodeGroup);
+		vo.setParamsPaging(count);
+		
+		if(count != 0) {
+			List<Code> list = service.selectListCode(vo);
+			model.addAttribute("list", list);
+			
+			List<Code> listCodeGroup = service.selectList(vo);
+			model.addAttribute("listCodeGroup", listCodeGroup);
+		} else {
+			// by pass
+		}
 
 		return "code/codeList";
 	}

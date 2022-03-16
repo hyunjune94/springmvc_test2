@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-
 
 @Controller
 public class MemberController {
@@ -16,11 +15,18 @@ public class MemberController {
 	MemberServiceImpl service;
 	
 	@RequestMapping(value = "/member/memberList")
-//	public String memberList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
-	public String memberList(Model model) throws Exception {
+	public String memberList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 
-		List<Member> list = service.selectList();
-		model.addAttribute("list", list);
+		int count = service.selectOneCount(vo);
+		
+		vo.setParamsPaging(count);
+		
+		if(count != 0) {
+			List<Member> list = service.selectList();
+			model.addAttribute("list", list);
+		} else {
+			// by pass
+		}
 
 		return "member/memberList";
 	}

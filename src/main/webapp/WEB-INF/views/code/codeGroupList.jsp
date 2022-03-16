@@ -40,6 +40,7 @@
 	</c:otherwise>
 </c:choose>	 
 </form>
+
 <c:out value="${vo.startPage}"/>
 <nav aria-label="...">
 	<ul class="pagination">

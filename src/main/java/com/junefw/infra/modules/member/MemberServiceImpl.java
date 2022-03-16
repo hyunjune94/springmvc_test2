@@ -5,13 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 public class MemberServiceImpl implements MemberService{
 
 	@Autowired
 	MemberDao dao;
+	
+	@Override
+	public int selectOneCount(MemberVo vo) throws Exception {
+		return dao.selectOneCount(vo);
+	}
 	
 	@Override
 	public List<Member> selectList() throws Exception {
@@ -32,4 +35,6 @@ public class MemberServiceImpl implements MemberService{
 	public int update(Member dto) throws Exception {
 		return dao.update(dto); 
 	}
+
+	
 }

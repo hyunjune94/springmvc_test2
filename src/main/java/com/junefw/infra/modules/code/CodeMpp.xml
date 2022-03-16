@@ -56,15 +56,15 @@
 	</insert>
 	
 	<select id="selectOne" resultMap="resultMapObj">
-		select
+		SELECT
 			a.ifcgSeq
 		    , a.ifcgName
 		    , a.ifcgDelNy
-		from
+		FROM
 			infrCodeGroup a
-		where 1=1
-			and ifcgDelNy = 0
-			and ifcgSeq = #{ifcgSeq}
+		WHERE 1=1
+			AND ifcgDelNy = 0
+			AND ifcgSeq = #{ifcgSeq}
 	</select>
 	
 	<update id="update">
@@ -74,17 +74,28 @@
 			and ifcgSeq = #{ifcgSeq}
 	</update>
 	
-	<!-- infrCode -->	
+	<!-- infrCode -->
+	<sql id="selectCommonCode">
+		FROM
+			infrCode a
+		WHERE 1=1
+			AND ifcdDelNy = 0
+		<if test="shIfcgSeq != null and !shIfcgSeq.equals('')"> AND infrCodeGroup_ifcgSeq = #{shIfcgSeq}</if>
+		</sql>
+	
+	<select id="selectOneCountCode" resultType="Integer">
+		SELECT
+			count(*)
+		<include refid="selectCommonCode" />
+	</select>
+		
 	<select id="selectListCode" resultMap="resultMapObj">
 		SELECT
 			a.ifcdSeq
 		    , a.ifcdName
 		    , a.ifcdDelNy
-		FROM
-			infrCode a
-		WHERE 1=1
-			AND ifcdDelNy = 0
-			<if test="shIfcgSeq != null and !shIfcgSeq.equals('')"> AND infrCodeGroup_ifcgSeq = #{shIfcgSeq}</if>
+		<include refid="selectCommonCode" />
+		limit #{startRnumForMysql}, #{rowNumToShow}
 	</select>
 	
 	<insert id="insertCode">
