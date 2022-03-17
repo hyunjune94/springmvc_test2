@@ -9,21 +9,21 @@
 
 <form id="" name="" method="get" action="/infra/code/codeGroupList">
 
-<select name="shIfcgDelNy">
+<select name="shIfcgDelNy" id="shIfcgDelNy">
 	<option value="">::삭제여부::
 	<option value="1">Y
 	<option value="0">N
 </select>
 ||
-코드이름 : <input type="text" name="shIfcgName">
+코드이름 : <input type="text" name="shIfcgName" id="shIfcgName">
 ||
-<select name="shOption">
+<select name="shOption" id="shOption">
 	<option value="">::검색구분::
 	<option value="1">한글
 	<option value="2">영문
 </select>
-<input type="text" name="shValue">
-<input type="submit" name="search">
+<input type="text" name="shValue" id="shValue">
+<input type="submit" id="btnSubmit" name="search">
 <br>
 <c:choose>
 	<c:when test="${fn:length(list) eq 0}">
@@ -62,3 +62,42 @@
 		</c:if>  
 	</ul>
 </nav>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/infra/resources/js/validation.js"></script>
+
+<script type="text/javascript">
+	$(btnSubmit).on("click", function(){
+	/*	if($("#shIfcgName").val() == "" || $("#shIfcgName").val() == null) {
+			alert("null 이다");
+			$("#shIfcgName").focus();
+		} */
+		
+		checkNull($("#shIfcgName"),  $("#shIfcgName").val(), "nulllllllll");
+
+	/*	alert( $("#shIfcgName").val() );	//jquery 방식
+		alert( document.getElementById("shIfcgName").value );	//javascript 방식
+	 	confirm("confirm");  
+		alert($("input[name=shIfcgName]").val());
+		
+		alert( $("#shIfcgDelNy").val() );
+	 	alert( $("#shIfcgName").val() );
+		alert( $("#shOption").val() );
+		alert( $("#shValue").val() );
+	*/
+	
+	});
+</script><!-- 
+<script type="text/javascript">
+
+	$("#btnSubmit").on("click", function(){
+		if(!checkNull($("#shIfcgName"), $("#shIfcgName").val(), "코드그룹 이름을 입력해 주세요")) return false;
+		if(!checkNull($("#shValue"), $("#shValue").val(), "검색어를 입력해 주세요")) return false;
+	});
+	
+	$("#btnSubmit2").on("click", function(){
+		alert("2번째 버튼입니다")
+	});
+	}
+</script>	 -->
+	

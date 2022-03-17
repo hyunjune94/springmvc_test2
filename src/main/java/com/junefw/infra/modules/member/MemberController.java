@@ -22,7 +22,7 @@ public class MemberController {
 		vo.setParamsPaging(count);
 		
 		if(count != 0) {
-			List<Member> list = service.selectList();
+			List<Member> list = service.selectList(vo);
 			model.addAttribute("list", list);
 		} else {
 			// by pass

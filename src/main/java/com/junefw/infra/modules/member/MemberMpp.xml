@@ -10,7 +10,7 @@
 
 	<sql id="selectCommon">
 		FROM
-			infrMember a
+			infrMember
 		WHERE 1=1
 			AND ifmmDelNy = 0
 	</sql>
@@ -27,7 +27,7 @@
 			, ifmmId
 			, ifmmName
 		<include refid="selectCommon" />
-		limit '#{startRnumForMysql}', '#{rowNumToShow}'
+		limit #{startRnumForMysql}, #{rowNumToShow}
 	</select>
 	
 	<insert id="insert">
