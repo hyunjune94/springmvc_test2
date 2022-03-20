@@ -12,7 +12,7 @@
 <select name="shIfcgDelNy" id="shIfcgDelNy">
 	<option value="">::삭제여부::
 	<option value="1" <c:if test="${vo.shIfcgDelNy eq 1 }">selected</c:if>>Y
-	<option value="0" <c:if test="${vo.shIfcgDelNy eq 0 }">selected</c:if>>>N
+	<option value="0" <c:if test="${vo.shIfcgDelNy eq 0 }">selected</c:if>>N
 </select>
 ||
 코드이름 : <input type="text" name="shIfcgName" id="shIfcgName" value="<c:out value="${vo.shIfcgName }"/>">
