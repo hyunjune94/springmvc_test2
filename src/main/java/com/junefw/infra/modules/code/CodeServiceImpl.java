@@ -35,10 +35,19 @@ public class CodeServiceImpl implements CodeService{
 	@Override
 	public int update(Code dto) throws Exception {
 		return dao.update(dto); 
+	}	
+	
+	@Override
+	public int delete(CodeVo vo) throws Exception {
+		return dao.delete(vo);
 	}
-	
-	
-//	infrCode
+
+	@Override
+	public int updateDelete(CodeVo vo) throws Exception {
+		return updateDelete(vo);
+	}
+
+	//	infrCode
 	@Override
 	public int selectOneCountCode(CodeVo vo) throws Exception {
 		return dao.selectOneCountCode(vo);

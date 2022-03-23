@@ -71,11 +71,19 @@
 	</select>
 	
 	<update id="update">
-		update infrCodeGroup set
+		UPDATE infrCodeGroup SET
 			ifcgName = #{ifcgName}
-		where 1=1
-			and ifcgSeq = #{ifcgSeq}
+		WHERE 1=1
+			AND ifcgSeq = #{ifcgSeq}
 	</update>
+
+	<update id="updateDelete">
+		UPDATE infrCodeGroup set ifcgDelNy = 1 WHERE 1=1 AND ifcgSeq = #{ifcgSeq}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM infrCodeGroup WHERE 1=1 AND ifcgSeq = #{ifcgSeq}
+	</delete>
 	
 	<!-- infrCode -->
 	<sql id="selectCommonCode">
