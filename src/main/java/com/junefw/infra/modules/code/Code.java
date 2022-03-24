@@ -1,5 +1,7 @@
 package com.junefw.infra.modules.code;
 
+import java.util.List;
+
 public class Code {
 
 	//	DTO
@@ -12,6 +14,10 @@ public class Code {
 	private String ifcdName;
 	private Integer ifcdDelNy;
 	private String infrCodeGroup_ifcgSeq;
+	
+	public static List<Code> cachedCodeArrayList;
+	
+//	for cache
 
 	//------------
 	public String getIfcgSeq() {

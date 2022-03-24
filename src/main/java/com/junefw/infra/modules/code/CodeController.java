@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -19,7 +20,6 @@ public class CodeController {
 	public String codeGroupList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 
 		int count = service.selectOneCount(vo);
-		System.out.println(count);
 		
 		vo.setParamsPaging(count);
 		
@@ -56,11 +56,14 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "/code/codeGroupView")
-	public String codeGroupView(CodeVo vo, Model model) throws Exception {
+	public String codeGroupView(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 
+		System.out.println("#######################################");
 		System.out.println("vo.getShoption(): " + vo.getShOption());
 		System.out.println("vo.getshValue(): " + vo.getShValue());
 		System.out.println("vo.getThisPage(): " + vo.getThisPage());
+		System.out.println("vo.getIfcgSeq(): " + vo.getIfcgSeq());
+		System.out.println("#######################################");
 
 		Code rt = service.selectOne(vo);
 		
