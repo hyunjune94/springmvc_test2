@@ -11,7 +11,7 @@
 <form id="formList" name="formList" method="post" action="/infra/code/codeGroupList">
 
 	<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
-	<input type="hidden" id="ifcdSeq" name="ifcdSeq">
+	<input type="hidden" id="ifcgSeq" name="ifcgSeq">
 <select name="shIfcgDelNy" id="shIfcgDelNy">
 	<option value="">::삭제여부::
 	<option value="1" <c:if test="${vo.shIfcgDelNy eq 1 }">selected</c:if>>Y
@@ -25,7 +25,7 @@
 	<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>>한글
 	<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>>영문
 </select>
-<input type="text" name="shValue" id="shValue"  value="<c:out value="${vo.shValue }"/>">
+<input type="text" name="shValue" id="shValue" value="<c:out value="${vo.shValue }"/>">
 <input type="submit" id="btnSubmit" name="search">
 <input type="submit" id="btnSubmit2" name="search">
 <br>
@@ -38,7 +38,7 @@
 	<c:otherwise>
 		<c:forEach items="${list}" var="item" varStatus="status">	
 		
-		<%-- <c:out value="${item.ifcgSeq}"/> | <a href="/infra/code/codeGroupView?ifcgSeq=<c:out value="${item.ifcgSeq}"/>&shOption=<c:out value="${vo.shOption }"/>&shValue=<c:out value="${vo.shValue }"/>"><c:out value="${item.ifcgName}"/></a> | <c:out value="${item.ifcgNameEng}"/> | <c:out value="${item.ifcgDelNy}"/> <br> --%>		
+	<%--<c:out value="${item.ifcgSeq}"/> | <a href="/infra/code/codeGroupView?ifcgSeq=<c:out value="${item.ifcgSeq}"/>&shOption=<c:out value="${vo.shOption }"/>&shValue=<c:out value="${vo.shValue }"/>"><c:out value="${item.ifcgName}"/></a> | <c:out value="${item.ifcgNameEng}"/> | <c:out value="${item.ifcgDelNy}"/> <br>--%>	
 		<c:out value="${item.ifcgSeq}"/> | <a href="javascript:goForm(<c:out value="${item.ifcgSeq}"/>)"><c:out value="${item.ifcgName }"/></a> | <c:out value="${item.ifcgNameEng}"/> | <c:out value="${item.ifcgDelNy}"/> <br>
 	
 		<c:choose>
@@ -51,7 +51,7 @@
 
 
 <c:out value="${vo.startPage}"/>
-<%--  	<nav aria-label="...">
+<%--<nav aria-label="...">
 		<ul class="pagination">
 		    <c:if test="${vo.startPage gt vo.pageNumToShow}">
 				<li class="page-item"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${vo.startPage - 1}&shOption=<c:out value="${vo.shOption }"/>&shValue=<c:out value="${vo.shValue }"/>">Previous</a></li>
@@ -70,8 +70,7 @@
 			        <li class="page-item"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${vo.endPage + 1}&shOption=<c:out value="${vo.shOption }"/>&shValue=<c:out value="${vo.shValue }"/>">Next</a></li>
 			</c:if>  
 		</ul>
-	</nav>
- --%>
+	</nav>--%>
 <nav aria-label="...">
 	<ul class="pagination">
 	    <c:if test="${vo.startPage gt vo.pageNumToShow}">
@@ -107,7 +106,7 @@
 
 		
 		if(!checkNull($("#shIfcgName"),  $("#shIfcgName").val(), "nulllllllll")) return false;
-		/* if(!checkNull($("#shValue"),  $("#shValue").val(), "null222222")) return false; */
+		if(!checkNull($("#shValue"),  $("#shValue").val(), "null222222")) return false; 
 
 	});
 	
@@ -118,13 +117,13 @@
 	
 	goList = function(seq) {
 		alert(seq);
-		$("#thisPage").value(seq);
+		$("#thisPage").val(seq);
 		$("#formList").submit();
 	};
 	
 	goForm = function(seq) {
 		alert(seq);
-		$("#ifcgSeq").value(seq);
+		$("#ifcgSeq").val(seq);
 		$("#formList").attr("action","/infra/code/codeGroupView");
 		$("#formList").submit();
 	};
