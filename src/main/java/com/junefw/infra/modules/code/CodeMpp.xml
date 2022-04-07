@@ -48,10 +48,14 @@
 				ifcgSeq
 				,ifcgName
 				,ifcgDelNy
+				,originalFileName
+				,uuidFileName
 			) values (
 				#{ifcgSeq}
 				,#{ifcgName}
 				,0
+				,#{originalFileName}
+				,#{uuidFileName}
 			)
 			<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
 				SELECT last_insert_id()
