@@ -50,6 +50,9 @@ public class CodeController {
 		String uuid = UUID.randomUUID().toString();
 		String uuidFileName = uuid + "." + ext;
 		
+		dto.setOriginalFileName(fileName);
+		dto.setUuidFileName(uuidFileName);
+		
 		multipartFile.transferTo(new File("C:/factory/ws_sts_4130/springmvc_test2/src/main/webapp/resources/uploaded/" + uuidFileName));
 		
 		System.out.println("multipartFile: " + multipartFile.getOriginalFilename());
