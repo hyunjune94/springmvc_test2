@@ -7,6 +7,9 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.junefw.infra.common.util.UtilUpload;
 
 @Service
 public class CodeServiceImpl implements CodeService{
@@ -27,8 +30,17 @@ public class CodeServiceImpl implements CodeService{
 
 	@Override
 	public int insert(Code dto) throws Exception {
-		return dao.insert(dto); 
-	}
+			
+			int j = 0;
+			
+			System.out.println("들어감");
+			for(MultipartFile multipartFile : dto.getFile0()) {
+				String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+				UtilUpload.upload(multipartFile, pathModule, dto);
+			}
+			
+			return dao.insertCode(dto);
+		}
 	
 	@Override
 	public Code selectOne(CodeVo vo) throws Exception {

@@ -19,15 +19,12 @@ public class Code {
 	
 	public static List<Code> cachedCodeArrayList;
 	
-	public MultipartFile file;
-	public MultipartFile file1;
+	public MultipartFile[] file0;
+	public MultipartFile[] file1;
 	
 	private String originalFileName;
 	private String uuidFileName;
-	
-//	for cache
-
-	//------------
+//	------------------------------
 	public String getIfcgSeq() {
 		return ifcgSeq;
 	}
@@ -52,7 +49,6 @@ public class Code {
 	public void setIfcgDelNy(Integer ifcgDelNy) {
 		this.ifcgDelNy = ifcgDelNy;
 	}
-	//------------
 	public String getIfcdSeq() {
 		return ifcdSeq;
 	}
@@ -77,16 +73,16 @@ public class Code {
 	public void setInfrCodeGroup_ifcgSeq(String infrCodeGroup_ifcgSeq) {
 		this.infrCodeGroup_ifcgSeq = infrCodeGroup_ifcgSeq;
 	}
-	public MultipartFile getFile() {
-		return file;
+	public MultipartFile[] getFile0() {
+		return file0;
 	}
-	public void setFile(MultipartFile file) {
-		this.file = file;
+	public void setFile0(MultipartFile[] file0) {
+		this.file0 = file0;
 	}
-	public MultipartFile getFile1() {
+	public MultipartFile[] getFile1() {
 		return file1;
 	}
-	public void setFile1(MultipartFile file1) {
+	public void setFile1(MultipartFile[] file1) {
 		this.file1 = file1;
 	}
 	public String getOriginalFileName() {
@@ -102,6 +98,9 @@ public class Code {
 		this.uuidFileName = uuidFileName;
 	}
 	
+	
+	
+
 	
 
 }

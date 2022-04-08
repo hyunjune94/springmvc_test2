@@ -67,6 +67,8 @@
 			a.ifcgSeq
 		    , a.ifcgName
 		    , a.ifcgDelNy
+		    , a.originalFileName
+		    , a.uuidFileName
 		FROM
 			infrCodeGroup a
 		WHERE 1=1

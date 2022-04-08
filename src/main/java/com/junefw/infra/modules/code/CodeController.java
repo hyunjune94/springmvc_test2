@@ -44,23 +44,27 @@ public class CodeController {
 	@RequestMapping(value = "/code/codeGroupInst")
 	public String codeGroupInst(Code dto) throws Exception {
 		
-		MultipartFile multipartFile = dto.getFile();
-		String fileName = multipartFile.getOriginalFilename();
-		String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
-		String uuid = UUID.randomUUID().toString();
-		String uuidFileName = uuid + "." + ext;
+//		 MultipartFile multipartFile = dto.getFile(); 
 		
-		dto.setOriginalFileName(fileName);
-		dto.setUuidFileName(uuidFileName);
+//		String fileName = multipartFile.getOriginalFilename();
+//		String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+//		String uuid = UUID.randomUUID().toString();
+//		String uuidFileName = uuid + "." + ext;
+//		
+//		dto.setIfcdOriginalFileName(fileName);
+//		dto.setIfcdUuidFileName(uuidFileName);
+//		
+//		
+//		multipartFile.transferTo(new File("C:/factory/ws_sts_0413/springmvc_test2/src/main/webapp/resources/uploaded/" + uuidFileName));
 		
-		multipartFile.transferTo(new File("C:/factory/ws_sts_4130/springmvc_test2/src/main/webapp/resources/uploaded/" + uuidFileName));
 		
-		System.out.println("multipartFile: " + multipartFile.getOriginalFilename());
-
-		service.insert(dto);
-
-		return "redirect:/code/codeGroupView?ifcgSeq=" + dto.getIfcgSeq() + "&thisPage()";
-	//	return "redirect:/code/codeGroupList";
+		
+//		System.out.println("multipartFile:" + multipartFile.getOriginalFilename());
+		
+//		입력 실행
+		service.insertCode(dto);
+		
+		return "";
 	}
 	
 	public String MakeQueryString(CodeVo vo) {

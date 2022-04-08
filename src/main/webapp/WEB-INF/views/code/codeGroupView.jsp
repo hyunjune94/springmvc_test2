@@ -12,7 +12,9 @@
 <a href="/infra/code/codeGroupDele?ifcgSeq=<c:out value="${item.ifcgSeq}"/>" id="btnDelete">삭제(진짜)</a>
 <a href="/infra/code/codeGroupNele?ifcgSeq=<c:out value="${item.ifcgSeq}"/>">삭제(가짜)</a>
 
-<img src="${pageContext.request.contextPath}/resources/uploaded/pi.png">
+<img src="${pageContext.request.contextPath}/resources/uploaded/<c:out value="${item.uuidFileName}"/>">
+
+<a href="/resources/uploaded/<c:out value="${item.uuidFileName}"/>" download="<c:out value="${item.originalFileName}"/>">다운로드</a>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
